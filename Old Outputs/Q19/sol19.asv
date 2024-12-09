@@ -1,0 +1,31 @@
+%q3sol
+clear all
+close all
+clc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+lambda=8;
+mu=10;
+
+%  [N1,T1]=Q3(lambda,mu);
+%  [N2,T2]=Q3mod(lambda,mu);
+ 
+for kk=1:200
+    [QRmu5]=Q19mm5(lambda, mu);       
+    [QRmu5]=Q19mu5(lambda, mu); 
+    [QRmu5]=Q19um5(lambda, mu); 
+    [QRmu5]=Q19uu5(lambda, mu); 
+%     Tmean(kk)=mean(T)
+%     Nmean(kk)=mean(N)
+      mQRmu5(kk)=mean(QRmu5)
+      
+end
+% figure,plot(Tmean)
+% figure,plot(Nmean)
+figure,plot(mQRmu5)
+
+
+
+[xQr1,lags11] = xcorr(mQRmu5-mean(mQRmu5),1,'coeff');
+lag1Corr_mu5=xQr1(1)
+
+
